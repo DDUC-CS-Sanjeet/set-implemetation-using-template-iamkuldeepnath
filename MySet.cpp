@@ -212,80 +212,72 @@ bool operator == (MySet ob)
 		}
 		cout<<"\nThe cardianality of power set is: "<<pow(2,size)<<endl;	
 	}
+	
+//	COPY CONSTRUCTOR
+	MySet (const MySet &ob)
+	{
+		size=ob.size;
+		set = new Y[size];
+		for(int i=0;i<size;i++)
+			set[i]=ob.set[i];
+	}
 };
 
+/*
 
-void functions(int choice)
+void functions(int choice,Y typevar)
 {
+	
+	
+	switch(choice)
+	{
+		case 1:
+			{
+				
+			}
+			break;
+		case 2:
+		
+			break;
+		case 3:
+			{
+				
+			}
+			break;
+		case 4:
+			{
+			
+			}
+			break;
+		case 6:
+			{
+				
+			}
+			break;
+	}
+}
+*/
+
+template <typename Y>
+void menu(Y typevar)
+{
+	
 	system("cls");
 	cout<<"\n";
 	int elements;
 	cout<<"\n->Enter no of elements for 1st set : ";
 	cin>>elements;
-	MySet<char> ob1(elements);
+	MySet<Y> ob1(elements);
 	ob1.input_set();
 	ob1.display_set();
 	
 	
 	cout<<"\n->Enter no of elements for 2nd set : ";
 	cin>>elements;
-	MySet<char> ob2(elements);
+	MySet<Y> ob2(elements);
 	ob2.input_set();
 	ob2.display_set();
 	
-	switch(choice)
-	{
-		case 1:
-			{
-				cout<<"\nUnion : ";
-				MySet<char> result=ob2+ob1;
-				result.display_set();
-				cout<<"\n\n-->Press Enter to continue....";
-				getch();
-			}
-			break;
-		case 2:
-			{
-				cout<<"\nIntersection : ";
-				MySet<char> result=ob1*ob2;
-				result.display_set();
-				cout<<"\n\n-->Press Enter to continue....";
-				getch();
-			}
-			break;
-		case 3:
-			{
-				cout<<"\nDifference : ";
-				MySet<char> result=ob1-ob2;
-				result.display_set();
-				cout<<"\n\n-->Press Enter to continue....";
-				getch();
-			}
-			break;
-		case 4:
-			{
-				cout<<"\nSymmetric Difference  : ";
-				MySet<char> result=ob1^ob2;
-				result.display_set();
-				cout<<"\n\n-->Press Enter to continue....";
-				getch();
-			}
-			break;
-		case 6:
-			{
-				if(ob1 == ob2)
-					cout<<"\nEQUAL SET";
-				else
-					cout<<"\nUNEQUAL SET";
-					
-				cout<<"\n\n-->Press Enter to continue....";
-				getch();
-			}
-	}
-}
-
-void menu()
-{
 	while(1)
 	{
 		system("cls");
@@ -294,8 +286,8 @@ void menu()
 		cout<<"\n2. Intersecton";
 		cout<<"\n3. Difference";
 		cout<<"\n4. Set Difference";
-		cout<<"\n5. Power Set";
-		cout<<"\n6. Compare";
+		cout<<"\n5. Compare";
+		cout<<"\n6. Power Set";
 		cout<<"\n7. Exit";
 		cout<<"\n\n->Enter your choice :- ";
 		int choice;
@@ -303,23 +295,47 @@ void menu()
 		switch(choice)
 		{
 			case 1:
-				functions(1);
+				{
+					cout<<"\nUnion : ";
+					MySet<Y> result=ob2+ob1;
+					result.display_set();
+					cout<<"\n\n-->Press Enter to continue....";
+					getch();
+				}
 				break;
 			case 2:
-				functions(2);
+				{
+					cout<<"\nIntersection : ";
+					MySet<Y> result=ob1*ob2;
+					result.display_set();
+					cout<<"\n\n-->Press Enter to continue....";
+					getch();
+				}
 				break;
 			case 3:
-				functions(3);
+				{
+					cout<<"\nDifference : ";
+					MySet<Y> result=ob1-ob2;
+					result.display_set();
+					cout<<"\n\n-->Press Enter to continue....";
+					getch();
+				}
 				break;
 			case 4:
-				functions(4);
+				{
+					cout<<"\nSymmetric Difference  : ";
+					MySet<Y> result=ob1^ob2;
+					result.display_set();
+					cout<<"\n\n-->Press Enter to continue....";
+					getch();
+				}
 				break;
-			case 5:
+			case 6:
 				{
 					system("cls");
 					cout<<"\n";
 					int elements;
-					cout<<"\n->Enter no of elements for the    set : ";
+					cout<<"\n->Enter no of elements for the set : ";
 					cin>>elements;
 					MySet<char> ob(elements);
 					ob.input_set();
@@ -331,8 +347,16 @@ void menu()
 					getch();
 				}
 				break;
-			case 6:
-				functions(6);
+			case 5:
+				{
+					if(ob1 == ob2)
+						cout<<"\nEQUAL SET";
+					else
+						cout<<"\nUNEQUAL SET";
+						
+					cout<<"\n\n-->Press Enter to continue....";
+					getch();
+				}
 				break;
 			case 7:
 				exit(0);
@@ -345,6 +369,41 @@ void menu()
 
 int main()
 {
-	menu();
+	while(1)
+	{
+		int choice;
+    
+    	int i;
+    	char c;
+    	float f;
+    	
+    	cout<<"################ SELECT TYPE OF ELEMENTS ####################  \n";
+    	cout<<"\n1.INT";
+    	cout<<"\n2.CHAR";
+    	cout<<"\n3.FLOAT";
+    	cout<<"\n4.EXIT THE PROGRAM";
+    	cout<<"\n->Enter your choice :-";
+    	cin>>choice;
+    	
+    	switch(choice)
+    	{
+    		case 1: 
+				menu(i);
+    				break;
+    				
+    		case 2: 
+				menu(c);
+    				break;
+    				
+    		case 3: 
+				menu(f);
+    				break;
+    		case 4:
+				exit(0);
+				break;		
+    		default: cout<<"Invalid choice!!!";
+  		
+		}
+	}
     return 0;
 }
